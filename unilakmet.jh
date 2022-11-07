@@ -1,0 +1,51 @@
+entity Item {
+	name String  required,
+	quantity Double required,
+    unit Unit required,
+    status ItemStatus required
+}
+
+entity Order {
+	name String required,
+    description String,
+	startDate Instant required,
+    estimatedEndDate Instant required,
+	status OrderStatus required
+}
+
+enum OrderStatus {
+    NEW (Nowe), IN_PROGRESS ("W trakcie"), FINISH ("Zakończone")
+}
+
+enum Unit {
+	KG (kg), M (m), CM (cm), PIECE (szt)
+}
+
+enum ItemStatus {
+	MISSING (Brakuje), ORDERED ("Zamówione"), IN_STOCK ("W magazynie")
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Order to Item{order}
+}
+
+//relationship ManyToOne {
+//	Employee{manager} to Employee
+//}
+
+// defining multiple oneToOne relationships
+//relationship OneToOne {
+//	JobHistory{job} to Job,
+//	JobHistory{department} to Department,
+//	JobHistory{employee} to Employee
+//}
+
+// Set pagination options
+paginate Order, Item with pagination
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
