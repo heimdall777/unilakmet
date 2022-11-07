@@ -1,0 +1,11 @@
+{
+  "unilakmetApp": {
+    "Unit": {
+      "null": "",
+      "KG": "kg",
+      "M": "m",
+      "CM": "cm",
+      "PIECE": "szt"
+    }
+  }
+}

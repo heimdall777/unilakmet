@@ -1,0 +1,10 @@
+{
+  "unilakmetApp": {
+    "ItemStatus": {
+      "null": "",
+      "MISSING": "Brakuje",
+      "ORDERED": "Zamówione",
+      "IN_STOCK": "W magazynie"
+    }
+  }
+}

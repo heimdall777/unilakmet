@@ -1,0 +1,28 @@
+{
+  "unilakmetApp": {
+    "item": {
+      "home": {
+        "title": "Item",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Item",
+        "createOrEditLabel": "Dodaj lub edytuj: Item",
+        "notFound": "No Items found"
+      },
+      "created": "Utworzono nowy obiekt typu Item z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Item z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Item z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Item {{ id }}?"
+      },
+      "detail": {
+        "title": "Item"
+      },
+      "id": "ID",
+      "name": "Name",
+      "quantity": "Quantity",
+      "unit": "Unit",
+      "status": "Status",
+      "order": "Order"
+    }
+  }
+}
