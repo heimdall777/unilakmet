@@ -1,0 +1,10 @@
+{
+  "unilakmetApp": {
+    "OrderStatus": {
+      "null": "",
+      "NEW": "Nowe",
+      "IN_PROGRESS": "W trakcie",
+      "FINISH": "Zakończone"
+    }
+  }
+}

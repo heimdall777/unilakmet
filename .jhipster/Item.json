@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20221107205110",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "item",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "quantity",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "unit",
+      "fieldType": "Unit",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "KG (kg),M (m),CM (cm),PIECE (szt)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "ItemStatus",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "MISSING (Brakuje),ORDERED (Zamówione),IN_STOCK (W magazynie)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Item",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "order",
+      "otherEntityRelationshipName": "item",
+      "relationshipName": "order",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
