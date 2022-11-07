@@ -1,0 +1,28 @@
+# This configuration is intended for development purpose, it's **your** responsibility to harden it for production
+version: '3.8'
+services:
+  unilakmet-app:
+    image: unilakmet
+    environment:
+      - _JAVA_OPTIONS=-Xmx512m -Xms256m
+      - SPRING_PROFILES_ACTIVE=prod,api-docs
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://unilakmet-postgresql:5432/unilakmet
+      - SPRING_LIQUIBASE_URL=jdbc:postgresql://unilakmet-postgresql:5432/unilakmet
+      - JHIPSTER_SLEEP=30 # gives time for other services to boot before the application
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:40224:40224
+  unilakmet-postgresql:
+    image: postgres:14.5
+    # volumes:
+    #   - ~/volumes/jhipster/unilakmet/postgresql/:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=unilakmet
+      - POSTGRES_PASSWORD=
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    # If you want to expose these ports outside your dev PC,
+    # remove the "127.0.0.1:" prefix
+    ports:
+      - 127.0.0.1:5432:5432
