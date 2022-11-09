@@ -1,12 +1,15 @@
 package pl.unilakmet.orders.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static pl.unilakmet.orders.web.rest.AccountResourceIT.TEST_USER_LOGIN;
 
 import java.time.Instant;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +28,6 @@ import pl.unilakmet.orders.security.AuthoritiesConstants;
 import pl.unilakmet.orders.service.UserService;
 import pl.unilakmet.orders.service.dto.AdminUserDTO;
 import pl.unilakmet.orders.service.dto.PasswordChangeDTO;
-import pl.unilakmet.orders.service.dto.UserDTO;
 import pl.unilakmet.orders.web.rest.vm.KeyAndPasswordVM;
 import pl.unilakmet.orders.web.rest.vm.ManagedUserVM;
 
@@ -98,7 +100,6 @@ class AccountResourceIT {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.login").value(TEST_USER_LOGIN))
             .andExpect(jsonPath("$.firstName").value("john"))
-            .andExpect(jsonPath("$.lastName").value("doe"))
             .andExpect(jsonPath("$.email").value("john.doe@jhipster.com"))
             .andExpect(jsonPath("$.imageUrl").value("http://placehold.it/50x50"))
             .andExpect(jsonPath("$.langKey").value("en"))
