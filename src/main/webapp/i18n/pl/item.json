@@ -6,7 +6,7 @@
         "refreshListLabel": "Odśwież listę",
         "createLabel": "Dodaj komponent",
         "createOrEditLabel": "Dodaj/Edytuj komponent",
-        "notFound": "Nie znaleziono komponentu"
+        "notFound": "Nie znaleziono komponentów"
       },
       "created": "Utworzono nowy obiekt typu komponent z identyfikatorem {{ param }}",
       "updated": "Uaktualniono obiekt typu komponent z identyfikatorem {{ param }}",

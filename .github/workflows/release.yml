@@ -21,4 +21,4 @@ jobs:
         run: docker login -u ${{ secrets.DOCKER_USER }}
           -p ${{ secrets.DOCKER_PASS }}
       - name: Build and publish
-        run: ./mvnw package -Pprod verify jib:build -Djib.to.image=$REPO:${GITHUB_SHA::8}
+        run: ./mvnw package -Pprod verify jib:build -Djib.to.image=$REPO:latest

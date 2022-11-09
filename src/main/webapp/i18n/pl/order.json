@@ -6,7 +6,7 @@
         "refreshListLabel": "Odśwież listę",
         "createLabel": "Dodaj zamówienie",
         "createOrEditLabel": "Dodaj/Edytuj zamówienie",
-        "notFound": "No Orders found"
+        "notFound": "Nie znaleziono zamówień"
       },
       "created": "Utworzono nowy obiekt typu zamówienie z identyfikatorem {{ param }}",
       "updated": "Uaktualniono obiekt typu zamówienie z identyfikatorem {{ param }}",
