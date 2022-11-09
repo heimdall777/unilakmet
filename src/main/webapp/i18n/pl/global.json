@@ -1,14 +1,14 @@
 {
   "global": {
-    "title": "Unilakmet",
+    "title": "unilakMET",
     "browsehappy": "Używasz <strong>przestarzałej</strong> przeglądarki. Proszę <a href=\"http://browsehappy.com/\">uaktualnij swoją przeglądarkę</a> aby poprawić wrażenia z użytkowania tej aplikacji.",
     "menu": {
       "home": "Strona domowa",
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
-        "main": "Encje",
-        "item": "Item",
-        "order": "Order",
+        "main": "Produkcja",
+        "order": "Zamówienia",
+        "item": "Komponenty",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
@@ -50,8 +50,7 @@
       "info": {
         "authenticated": {
           "prefix": "Jeśli chcesz się ",
-          "link": "zalogować",
-          "suffix": ", możesz spróbować któregoś z domyślnych kont:<br/>- Administrator (login=\"admin\" i hasło=\"admin\") <br/>- Użytkownik (login=\"user\" i hasło=\"user\")."
+          "link": "zalogować"
         },
         "register": {
           "noaccount": "Nie masz jeszcze konta?",
@@ -144,5 +143,6 @@
       "not.image": "File was expected to be an image but was found to be \"{{ fileType }}\""
     }
   },
-  "footer": "To jest stopka"
+  "footer": "Copyright 2022 - Unilakmet",
+  "logout": "Wylogowano!"
 }

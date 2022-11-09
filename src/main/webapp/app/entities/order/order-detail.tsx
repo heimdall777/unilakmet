@@ -63,7 +63,9 @@ export const OrderDetail = () => {
               <Translate contentKey="unilakmetApp.order.status">Status</Translate>
             </span>
           </dt>
-          <dd>{orderEntity.status}</dd>
+          <dd>
+            <Translate contentKey={`unilakmetApp.OrderStatus.${orderEntity.status}`} />
+          </dd>
         </dl>
         <Button tag={Link} to="/order" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -2,28 +2,29 @@
   "unilakmetApp": {
     "order": {
       "home": {
-        "title": "Order",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Dodaj Order",
-        "createOrEditLabel": "Dodaj lub edytuj: Order",
+        "title": "Zamówienia",
+        "refreshListLabel": "Odśwież listę",
+        "createLabel": "Dodaj zamówienie",
+        "createOrEditLabel": "Dodaj/Edytuj zamówienie",
         "notFound": "No Orders found"
       },
-      "created": "Utworzono nowy obiekt typu Order z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Order z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Order z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu zamówienie z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu zamówienie z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu zamówienie z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Order {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć zamówienie '{{ name }}'?"
       },
       "detail": {
-        "title": "Order"
+        "title": "Zamówienie"
       },
       "id": "ID",
-      "name": "Name",
-      "description": "Description",
-      "startDate": "Start Date",
-      "estimatedEndDate": "Estimated End Date",
+      "name": "Nazwa",
+      "description": "Opis",
+      "startDate": "Data rozpoczęcia",
+      "estimatedEndDate": "Przewidywana dana zakończenia",
       "status": "Status",
-      "item": "Item"
+      "done": "Zakończono",
+      "item": "Komponent"
     }
   }
 }

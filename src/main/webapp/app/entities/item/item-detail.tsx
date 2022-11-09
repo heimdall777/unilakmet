@@ -59,7 +59,7 @@ export const ItemDetail = () => {
           <dt>
             <Translate contentKey="unilakmetApp.item.order">Order</Translate>
           </dt>
-          <dd>{itemEntity.order ? itemEntity.order.id : ''}</dd>
+          <dd>{itemEntity.order ? itemEntity.order.name : ''}</dd>
         </dl>
         <Button tag={Link} to="/item" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

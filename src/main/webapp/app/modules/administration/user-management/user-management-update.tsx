@@ -7,14 +7,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { locales, languages } from 'app/config/translation';
 import { getUser, getRoles, updateUser, createUser, reset } from './user-management.reducer';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
+import PasswordStrengthBar from 'app/shared/layout/password/password-strength-bar';
 
 export const UserManagementUpdate = () => {
+  const [password, setPassword] = useState('');
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
 
   const { login } = useParams<'login'>();
   const isNew = login === undefined;
+
+  const updatePassword = event => setPassword(event.target.value);
 
   useEffect(() => {
     if (isNew) {
@@ -107,18 +111,6 @@ export const UserManagementUpdate = () => {
                 }}
               />
               <ValidatedField
-                type="text"
-                name="lastName"
-                label={translate('userManagement.lastName')}
-                validate={{
-                  maxLength: {
-                    value: 50,
-                    message: translate('entity.validation.maxlength', { max: 50 }),
-                  },
-                }}
-              />
-              <FormText>This field cannot be longer than 50 characters.</FormText>
-              <ValidatedField
                 name="email"
                 label={translate('global.form.email.label')}
                 placeholder={translate('global.form.email.placeholder')}
@@ -138,6 +130,33 @@ export const UserManagementUpdate = () => {
                   },
                   validate: v => isEmail(v) || translate('global.messages.validate.email.invalid'),
                 }}
+              />
+              <ValidatedField
+                name="password"
+                label={translate('global.form.newpassword.label')}
+                placeholder={translate('global.form.newpassword.placeholder')}
+                type="password"
+                onChange={updatePassword}
+                validate={{
+                  required: { value: true, message: translate('global.messages.validate.newpassword.required') },
+                  minLength: { value: 4, message: translate('global.messages.validate.newpassword.minlength') },
+                  maxLength: { value: 50, message: translate('global.messages.validate.newpassword.maxlength') },
+                }}
+                data-cy="password"
+              />
+              <PasswordStrengthBar password={password} />
+              <ValidatedField
+                name="secondPassword"
+                label={translate('global.form.confirmpassword.label')}
+                placeholder={translate('global.form.confirmpassword.placeholder')}
+                type="password"
+                validate={{
+                  required: { value: true, message: translate('global.messages.validate.confirmpassword.required') },
+                  minLength: { value: 4, message: translate('global.messages.validate.confirmpassword.minlength') },
+                  maxLength: { value: 50, message: translate('global.messages.validate.confirmpassword.maxlength') },
+                  validate: v => v === password || translate('global.messages.error.dontmatch'),
+                }}
+                data-cy="secondPassword"
               />
               <ValidatedField
                 type="checkbox"

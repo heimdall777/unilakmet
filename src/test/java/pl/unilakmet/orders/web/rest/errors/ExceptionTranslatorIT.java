@@ -48,24 +48,6 @@ class ExceptionTranslatorIT {
     }
 
     @Test
-    void testMissingServletRequestPartException() throws Exception {
-        mockMvc
-            .perform(get("/api/exception-translator-test/missing-servlet-request-part"))
-            .andExpect(status().isBadRequest())
-            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
-            .andExpect(jsonPath("$.message").value("error.http.400"));
-    }
-
-    @Test
-    void testMissingServletRequestParameterException() throws Exception {
-        mockMvc
-            .perform(get("/api/exception-translator-test/missing-servlet-request-parameter"))
-            .andExpect(status().isBadRequest())
-            .andExpect(content().contentType(MediaType.APPLICATION_PROBLEM_JSON))
-            .andExpect(jsonPath("$.message").value("error.http.400"));
-    }
-
-    @Test
     void testAccessDenied() throws Exception {
         mockMvc
             .perform(get("/api/exception-translator-test/access-denied"))

@@ -2,27 +2,27 @@
   "unilakmetApp": {
     "item": {
       "home": {
-        "title": "Item",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Dodaj Item",
-        "createOrEditLabel": "Dodaj lub edytuj: Item",
-        "notFound": "No Items found"
+        "title": "Komponenty",
+        "refreshListLabel": "Odśwież listę",
+        "createLabel": "Dodaj komponent",
+        "createOrEditLabel": "Dodaj/Edytuj komponent",
+        "notFound": "Nie znaleziono komponentu"
       },
-      "created": "Utworzono nowy obiekt typu Item z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Item z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Item z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu komponent z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu komponent z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu komponent z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Item {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć komponent '{{ name }}'?"
       },
       "detail": {
         "title": "Item"
       },
       "id": "ID",
-      "name": "Name",
-      "quantity": "Quantity",
-      "unit": "Unit",
+      "name": "Nazwa",
+      "quantity": "Ilość",
+      "unit": "Jednostka",
       "status": "Status",
-      "order": "Order"
+      "order": "Zamówienie"
     }
   }
 }
