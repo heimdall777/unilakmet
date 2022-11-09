@@ -17,5 +17,8 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
+      - name: Login to Docker Hub
+        run: docker login -u ${{ secrets.DOCKER_USER }}
+          -p ${{ secrets.DOCKER_PASS }}
       - name: Build and publish
-        run: ./mvnw package -Pprod verify jib:build -Djib.to.image=f$REPO:${GITHUB_SHA::8}  -Djib.to.auth.username=${{ secrets.DOCKER_USER }} -Djib.to.auth.password=${{ secrets.DOCKER_PASS }}
+        run: ./mvnw package -Pprod verify jib:build -Djib.to.image=f$REPO:${GITHUB_SHA::8}
