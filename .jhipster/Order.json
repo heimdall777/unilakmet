@@ -29,6 +29,10 @@
       "fieldType": "OrderStatus",
       "fieldValidateRules": ["required"],
       "fieldValues": "NEW (Nowe),IN_PROGRESS (W trakcie),FINISH (Zakończone)"
+    },
+    {
+      "fieldName": "url",
+      "fieldType": "String"
     }
   ],
   "fluentMethods": true,

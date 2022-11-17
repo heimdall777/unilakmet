@@ -9,6 +9,9 @@
         "main": "Produkcja",
         "order": "Zamówienia",
         "item": "Komponenty",
+        "item": "Item",
+        "order": "Order",
+        "material": "Material",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -105,19 +105,13 @@ export const Item = () => {
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="unilakmetApp.item.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="unilakmetApp.item.name">Name</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
                 <th className="hand" onClick={sort('quantity')}>
                   <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('unit')}>
-                  <Translate contentKey="unilakmetApp.item.unit">Unit</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('status')}>
                   <Translate contentKey="unilakmetApp.item.status">Status</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('order.id')}>
+                <th>
                   <Translate contentKey="unilakmetApp.item.order">Order</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
@@ -131,15 +125,11 @@ export const Item = () => {
                       {item.id}
                     </Button>
                   </td>
-                  <td>{item.name}</td>
                   <td>{item.quantity}</td>
-                  <td>
-                    <Translate contentKey={`unilakmetApp.Unit.${item.unit}`} />
-                  </td>
                   <td>
                     <Translate contentKey={`unilakmetApp.ItemStatus.${item.status}`} />
                   </td>
-                  <td>{item.order ? <Link to={`/order/${item.order.id}`}>{item.order.name}</Link> : ''}</td>
+                  <td>{item.order ? <Link to={`/order/${item.order.id}`}>{item.order.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/item/${item.id}`} color="info" size="sm" data-cy="entityDetailsButton">

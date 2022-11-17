@@ -6,20 +6,9 @@
   "entityTableName": "item",
   "fields": [
     {
-      "fieldName": "name",
-      "fieldType": "String",
-      "fieldValidateRules": ["required"]
-    },
-    {
       "fieldName": "quantity",
       "fieldType": "Double",
       "fieldValidateRules": ["required"]
-    },
-    {
-      "fieldName": "unit",
-      "fieldType": "Unit",
-      "fieldValidateRules": ["required"],
-      "fieldValues": "KG (kg),M (m),CM (cm),PIECE (szt)"
     },
     {
       "fieldName": "status",
@@ -34,6 +23,12 @@
   "pagination": "pagination",
   "readOnly": false,
   "relationships": [
+    {
+      "otherEntityName": "material",
+      "otherEntityRelationshipName": "item",
+      "relationshipName": "material",
+      "relationshipType": "one-to-many"
+    },
     {
       "otherEntityName": "order",
       "otherEntityRelationshipName": "item",

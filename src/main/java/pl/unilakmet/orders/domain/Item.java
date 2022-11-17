@@ -2,10 +2,11 @@ package pl.unilakmet.orders.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import pl.unilakmet.orders.domain.enumeration.ItemStatus;
-import pl.unilakmet.orders.domain.enumeration.Unit;
 
 /**
  * A Item.
@@ -24,22 +25,17 @@ public class Item implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @NotNull
     @Column(name = "quantity", nullable = false)
     private Double quantity;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "unit", nullable = false)
-    private Unit unit;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private ItemStatus status;
+
+    @OneToMany(mappedBy = "item")
+    @JsonIgnoreProperties(value = { "item" }, allowSetters = true)
+    private Set<Material> materials = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "items" }, allowSetters = true)
@@ -60,19 +56,6 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public Item name(String name) {
-        this.setName(name);
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getQuantity() {
         return this.quantity;
     }
@@ -86,19 +69,6 @@ public class Item implements Serializable {
         this.quantity = quantity;
     }
 
-    public Unit getUnit() {
-        return this.unit;
-    }
-
-    public Item unit(Unit unit) {
-        this.setUnit(unit);
-        return this;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
-    }
-
     public ItemStatus getStatus() {
         return this.status;
     }
@@ -110,6 +80,37 @@ public class Item implements Serializable {
 
     public void setStatus(ItemStatus status) {
         this.status = status;
+    }
+
+    public Set<Material> getMaterials() {
+        return this.materials;
+    }
+
+    public void setMaterials(Set<Material> materials) {
+        if (this.materials != null) {
+            this.materials.forEach(i -> i.setItem(null));
+        }
+        if (materials != null) {
+            materials.forEach(i -> i.setItem(this));
+        }
+        this.materials = materials;
+    }
+
+    public Item materials(Set<Material> materials) {
+        this.setMaterials(materials);
+        return this;
+    }
+
+    public Item addMaterial(Material material) {
+        this.materials.add(material);
+        material.setItem(this);
+        return this;
+    }
+
+    public Item removeMaterial(Material material) {
+        this.materials.remove(material);
+        material.setItem(null);
+        return this;
     }
 
     public Order getOrder() {
@@ -149,9 +150,7 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
             ", quantity=" + getQuantity() +
-            ", unit='" + getUnit() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

@@ -28,6 +28,8 @@ public class OrderDTO implements Serializable {
     @NotNull
     private OrderStatus status;
 
+    private String url;
+
     public Long getId() {
         return id;
     }
@@ -76,6 +78,14 @@ public class OrderDTO implements Serializable {
         this.status = status;
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,6 +117,7 @@ public class OrderDTO implements Serializable {
             ", startDate='" + getStartDate() + "'" +
             ", estimatedEndDate='" + getEstimatedEndDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

@@ -8,13 +8,13 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IOrder } from 'app/shared/model/order.model';
-import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { IItem } from 'app/shared/model/item.model';
-import { ItemStatus } from 'app/shared/model/enumerations/item-status.model';
-import { getEntity, updateEntity, createEntity, reset } from './item.reducer';
+import { getEntities as getItems } from 'app/entities/item/item.reducer';
+import { IMaterial } from 'app/shared/model/material.model';
+import { Unit } from 'app/shared/model/enumerations/unit.model';
+import { getEntity, updateEntity, createEntity, reset } from './material.reducer';
 
-export const ItemUpdate = () => {
+export const MaterialUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -22,15 +22,15 @@ export const ItemUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const orders = useAppSelector(state => state.order.entities);
-  const itemEntity = useAppSelector(state => state.item.entity);
-  const loading = useAppSelector(state => state.item.loading);
-  const updating = useAppSelector(state => state.item.updating);
-  const updateSuccess = useAppSelector(state => state.item.updateSuccess);
-  const itemStatusValues = Object.keys(ItemStatus);
+  const items = useAppSelector(state => state.item.entities);
+  const materialEntity = useAppSelector(state => state.material.entity);
+  const loading = useAppSelector(state => state.material.loading);
+  const updating = useAppSelector(state => state.material.updating);
+  const updateSuccess = useAppSelector(state => state.material.updateSuccess);
+  const unitValues = Object.keys(Unit);
 
   const handleClose = () => {
-    navigate('/item' + location.search);
+    navigate('/material');
   };
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const ItemUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getOrders({}));
+    dispatch(getItems({}));
   }, []);
 
   useEffect(() => {
@@ -51,9 +51,9 @@ export const ItemUpdate = () => {
 
   const saveEntity = values => {
     const entity = {
-      ...itemEntity,
+      ...materialEntity,
       ...values,
-      order: orders.find(it => it.id.toString() === values.order.toString()),
+      item: items.find(it => it.id.toString() === values.item.toString()),
     };
 
     if (isNew) {
@@ -67,17 +67,17 @@ export const ItemUpdate = () => {
     isNew
       ? {}
       : {
-          status: 'MISSING',
-          ...itemEntity,
-          order: itemEntity?.order?.id,
+          unit: 'KG',
+          ...materialEntity,
+          item: materialEntity?.item?.id,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="unilakmetApp.item.home.createOrEditLabel" data-cy="ItemCreateUpdateHeading">
-            <Translate contentKey="unilakmetApp.item.home.createOrEditLabel">Create or edit a Item</Translate>
+          <h2 id="unilakmetApp.material.home.createOrEditLabel" data-cy="MaterialCreateUpdateHeading">
+            <Translate contentKey="unilakmetApp.material.home.createOrEditLabel">Create or edit a Material</Translate>
           </h2>
         </Col>
       </Row>
@@ -92,40 +92,39 @@ export const ItemUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  id="item-id"
+                  id="material-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('unilakmetApp.item.quantity')}
-                id="item-quantity"
-                name="quantity"
-                data-cy="quantity"
+                label={translate('unilakmetApp.material.name')}
+                id="material-name"
+                name="name"
+                data-cy="name"
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
-                  validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
-              <ValidatedField label={translate('unilakmetApp.item.status')} id="item-status" name="status" data-cy="status" type="select">
-                {itemStatusValues.map(itemStatus => (
-                  <option value={itemStatus} key={itemStatus}>
-                    {translate('unilakmetApp.ItemStatus.' + itemStatus)}
+              <ValidatedField label={translate('unilakmetApp.material.unit')} id="material-unit" name="unit" data-cy="unit" type="select">
+                {unitValues.map(unit => (
+                  <option value={unit} key={unit}>
+                    {translate('unilakmetApp.Unit.' + unit)}
                   </option>
                 ))}
               </ValidatedField>
-              <ValidatedField id="item-order" name="order" data-cy="order" label={translate('unilakmetApp.item.order')} type="select">
+              <ValidatedField id="material-item" name="item" data-cy="item" label={translate('unilakmetApp.material.item')} type="select">
                 <option value="" key="0" />
-                {orders
-                  ? orders.map(otherEntity => (
+                {items
+                  ? items.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.id}
                       </option>
                     ))
                   : null}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/item" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/material" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -146,4 +145,4 @@ export const ItemUpdate = () => {
   );
 };
 
-export default ItemUpdate;
+export default MaterialUpdate;

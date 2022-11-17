@@ -20,7 +20,6 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.unilakmet.orders.IntegrationTest;
 import pl.unilakmet.orders.domain.Item;
 import pl.unilakmet.orders.domain.enumeration.ItemStatus;
-import pl.unilakmet.orders.domain.enumeration.Unit;
 import pl.unilakmet.orders.repository.ItemRepository;
 import pl.unilakmet.orders.service.dto.ItemDTO;
 import pl.unilakmet.orders.service.mapper.ItemMapper;
@@ -33,14 +32,8 @@ import pl.unilakmet.orders.service.mapper.ItemMapper;
 @WithMockUser
 class ItemResourceIT {
 
-    private static final String DEFAULT_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_NAME = "BBBBBBBBBB";
-
     private static final Double DEFAULT_QUANTITY = 1D;
     private static final Double UPDATED_QUANTITY = 2D;
-
-    private static final Unit DEFAULT_UNIT = Unit.KG;
-    private static final Unit UPDATED_UNIT = Unit.M;
 
     private static final ItemStatus DEFAULT_STATUS = ItemStatus.MISSING;
     private static final ItemStatus UPDATED_STATUS = ItemStatus.ORDERED;
@@ -72,7 +65,7 @@ class ItemResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Item createEntity(EntityManager em) {
-        Item item = new Item().name(DEFAULT_NAME).quantity(DEFAULT_QUANTITY).unit(DEFAULT_UNIT).status(DEFAULT_STATUS);
+        Item item = new Item().quantity(DEFAULT_QUANTITY).status(DEFAULT_STATUS);
         return item;
     }
 
@@ -83,7 +76,7 @@ class ItemResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Item createUpdatedEntity(EntityManager em) {
-        Item item = new Item().name(UPDATED_NAME).quantity(UPDATED_QUANTITY).unit(UPDATED_UNIT).status(UPDATED_STATUS);
+        Item item = new Item().quantity(UPDATED_QUANTITY).status(UPDATED_STATUS);
         return item;
     }
 
@@ -106,9 +99,7 @@ class ItemResourceIT {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeCreate + 1);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
-        assertThat(testItem.getUnit()).isEqualTo(DEFAULT_UNIT);
         assertThat(testItem.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
@@ -133,46 +124,10 @@ class ItemResourceIT {
 
     @Test
     @Transactional
-    void checkNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = itemRepository.findAll().size();
-        // set the field null
-        item.setName(null);
-
-        // Create the Item, which fails.
-        ItemDTO itemDTO = itemMapper.toDto(item);
-
-        restItemMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(itemDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Item> itemList = itemRepository.findAll();
-        assertThat(itemList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     void checkQuantityIsRequired() throws Exception {
         int databaseSizeBeforeTest = itemRepository.findAll().size();
         // set the field null
         item.setQuantity(null);
-
-        // Create the Item, which fails.
-        ItemDTO itemDTO = itemMapper.toDto(item);
-
-        restItemMockMvc
-            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(itemDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Item> itemList = itemRepository.findAll();
-        assertThat(itemList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    void checkUnitIsRequired() throws Exception {
-        int databaseSizeBeforeTest = itemRepository.findAll().size();
-        // set the field null
-        item.setUnit(null);
 
         // Create the Item, which fails.
         ItemDTO itemDTO = itemMapper.toDto(item);
@@ -215,9 +170,7 @@ class ItemResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(item.getId().intValue())))
-            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)))
             .andExpect(jsonPath("$.[*].quantity").value(hasItem(DEFAULT_QUANTITY.doubleValue())))
-            .andExpect(jsonPath("$.[*].unit").value(hasItem(DEFAULT_UNIT.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
@@ -233,9 +186,7 @@ class ItemResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(item.getId().intValue()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME))
             .andExpect(jsonPath("$.quantity").value(DEFAULT_QUANTITY.doubleValue()))
-            .andExpect(jsonPath("$.unit").value(DEFAULT_UNIT.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
@@ -258,7 +209,7 @@ class ItemResourceIT {
         Item updatedItem = itemRepository.findById(item.getId()).get();
         // Disconnect from session so that the updates on updatedItem are not directly saved in db
         em.detach(updatedItem);
-        updatedItem.name(UPDATED_NAME).quantity(UPDATED_QUANTITY).unit(UPDATED_UNIT).status(UPDATED_STATUS);
+        updatedItem.quantity(UPDATED_QUANTITY).status(UPDATED_STATUS);
         ItemDTO itemDTO = itemMapper.toDto(updatedItem);
 
         restItemMockMvc
@@ -273,9 +224,7 @@ class ItemResourceIT {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeUpdate);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
-        assertThat(testItem.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testItem.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 
@@ -356,8 +305,6 @@ class ItemResourceIT {
         Item partialUpdatedItem = new Item();
         partialUpdatedItem.setId(item.getId());
 
-        partialUpdatedItem.status(UPDATED_STATUS);
-
         restItemMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedItem.getId())
@@ -370,10 +317,8 @@ class ItemResourceIT {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeUpdate);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testItem.getQuantity()).isEqualTo(DEFAULT_QUANTITY);
-        assertThat(testItem.getUnit()).isEqualTo(DEFAULT_UNIT);
-        assertThat(testItem.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testItem.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -388,7 +333,7 @@ class ItemResourceIT {
         Item partialUpdatedItem = new Item();
         partialUpdatedItem.setId(item.getId());
 
-        partialUpdatedItem.name(UPDATED_NAME).quantity(UPDATED_QUANTITY).unit(UPDATED_UNIT).status(UPDATED_STATUS);
+        partialUpdatedItem.quantity(UPDATED_QUANTITY).status(UPDATED_STATUS);
 
         restItemMockMvc
             .perform(
@@ -402,9 +347,7 @@ class ItemResourceIT {
         List<Item> itemList = itemRepository.findAll();
         assertThat(itemList).hasSize(databaseSizeBeforeUpdate);
         Item testItem = itemList.get(itemList.size() - 1);
-        assertThat(testItem.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testItem.getQuantity()).isEqualTo(UPDATED_QUANTITY);
-        assertThat(testItem.getUnit()).isEqualTo(UPDATED_UNIT);
         assertThat(testItem.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 

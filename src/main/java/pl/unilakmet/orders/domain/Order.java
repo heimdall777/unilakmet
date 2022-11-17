@@ -45,8 +45,11 @@ public class Order implements Serializable {
     @Column(name = "status", nullable = false)
     private OrderStatus status;
 
+    @Column(name = "url")
+    private String url;
+
     @OneToMany(mappedBy = "order")
-    @JsonIgnoreProperties(value = { "order" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "materials", "order" }, allowSetters = true)
     private Set<Item> items = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -129,6 +132,19 @@ public class Order implements Serializable {
         this.status = status;
     }
 
+    public String getUrl() {
+        return this.url;
+    }
+
+    public Order url(String url) {
+        this.setUrl(url);
+        return this;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
     public Set<Item> getItems() {
         return this.items;
     }
@@ -189,6 +205,7 @@ public class Order implements Serializable {
             ", startDate='" + getStartDate() + "'" +
             ", estimatedEndDate='" + getEstimatedEndDate() + "'" +
             ", status='" + getStatus() + "'" +
+            ", url='" + getUrl() + "'" +
             "}";
     }
 }

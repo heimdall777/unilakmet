@@ -18,10 +18,9 @@
         "title": "Item"
       },
       "id": "ID",
-      "name": "Name",
       "quantity": "Quantity",
-      "unit": "Unit",
       "status": "Status",
+      "material": "Material",
       "order": "Order"
     }
   }

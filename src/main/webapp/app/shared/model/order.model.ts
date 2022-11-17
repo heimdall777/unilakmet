@@ -9,6 +9,7 @@ export interface IOrder {
   startDate?: string;
   estimatedEndDate?: string;
   status?: OrderStatus;
+  url?: string | null;
   items?: IItem[] | null;
 }
 

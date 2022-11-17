@@ -45,7 +45,7 @@ export const OrderDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="unilakmetApp.order.delete.question">
-        <Translate contentKey="unilakmetApp.order.delete.question" interpolate={{ name: orderEntity.name }}>
+        <Translate contentKey="unilakmetApp.order.delete.question" interpolate={{ id: orderEntity.id }}>
           Are you sure you want to delete this Order?
         </Translate>
       </ModalBody>
