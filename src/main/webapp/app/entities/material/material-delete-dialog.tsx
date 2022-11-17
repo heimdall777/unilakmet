@@ -45,7 +45,7 @@ export const MaterialDeleteDialog = () => {
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
       <ModalBody id="unilakmetApp.material.delete.question">
-        <Translate contentKey="unilakmetApp.material.delete.question" interpolate={{ id: materialEntity.id }}>
+        <Translate contentKey="unilakmetApp.material.delete.question" interpolate={{ name: materialEntity.name }}>
           Are you sure you want to delete this Material?
         </Translate>
       </ModalBody>

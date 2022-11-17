@@ -93,16 +93,22 @@ export const ItemUpdate = () => {
             <p>Loading...</p>
           ) : (
             <ValidatedForm defaultValues={defaultValues()} onSubmit={saveEntity}>
-              {!isNew ? (
-                <ValidatedField
-                  name="id"
-                  required
-                  readOnly
-                  id="item-id"
-                  label={translate('global.field.id')}
-                  validate={{ required: true }}
-                />
-              ) : null}
+              <ValidatedField
+                id="item-material"
+                name="material"
+                data-cy="material"
+                label={translate('unilakmetApp.item.material')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {materials
+                  ? materials.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.name} (<Translate contentKey={`unilakmetApp.Unit.${otherEntity.unit}`} />)
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <ValidatedField
                 label={translate('unilakmetApp.item.quantity')}
                 id="item-quantity"
@@ -126,23 +132,7 @@ export const ItemUpdate = () => {
                 {orders
                   ? orders.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                id="item-material"
-                name="material"
-                data-cy="material"
-                label={translate('unilakmetApp.item.material')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {materials
-                  ? materials.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.name}
                       </option>
                     ))
                   : null}

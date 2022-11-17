@@ -21,7 +21,8 @@
       "quantity": "Quantity",
       "status": "Status",
       "order": "Order",
-      "material": "Material"
+      "material": "Material",
+      "unit": "Unit"
     }
   }
 }

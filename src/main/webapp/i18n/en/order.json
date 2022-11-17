@@ -12,7 +12,7 @@
       "updated": "A Order is updated with identifier {{ param }}",
       "deleted": "A Order is deleted with identifier {{ param }}",
       "delete": {
-        "question": "Are you sure you want to delete Order {{ id }}?"
+        "question": "Are you sure you want to delete Order {{ name }}?"
       },
       "detail": {
         "title": "Order"

@@ -105,17 +105,20 @@ export const Item = () => {
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="unilakmetApp.item.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
+                <th>
+                  <Translate contentKey="unilakmetApp.item.material">Material</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="unilakmetApp.item.unit">Unit</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
                 <th className="hand" onClick={sort('quantity')}>
                   <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('status')}>
                   <Translate contentKey="unilakmetApp.item.status">Status</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th>
+                <th className="hand" onClick={sort('order.id')}>
                   <Translate contentKey="unilakmetApp.item.order">Order</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th>
-                  <Translate contentKey="unilakmetApp.item.material">Material</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th />
               </tr>
@@ -128,12 +131,13 @@ export const Item = () => {
                       {item.id}
                     </Button>
                   </td>
+                  <td>{item.material ? <Link to={`/material/${item.material.name}`}>{item.material.name}</Link> : ''}</td>
+                  <td>{item.material ? <Translate contentKey={`unilakmetApp.Unit.${item.material.unit}`} /> : ''}</td>
                   <td>{item.quantity}</td>
                   <td>
                     <Translate contentKey={`unilakmetApp.ItemStatus.${item.status}`} />
                   </td>
-                  <td>{item.order ? <Link to={`/order/${item.order.id}`}>{item.order.id}</Link> : ''}</td>
-                  <td>{item.material ? <Link to={`/material/${item.material.id}`}>{item.material.id}</Link> : ''}</td>
+                  <td>{item.order ? <Link to={`/order/${item.order.id}`}>{item.order.name}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/item/${item.id}`} color="info" size="sm" data-cy="entityDetailsButton">

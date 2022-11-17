@@ -33,6 +33,14 @@ export const ItemDetail = () => {
           </dt>
           <dd>{itemEntity.id}</dd>
           <dt>
+            <Translate contentKey="unilakmetApp.item.material">Material</Translate>
+          </dt>
+          <dd>{itemEntity.material ? itemEntity.material.name : ''}</dd>
+          <dt>
+            <Translate contentKey="unilakmetApp.item.unit">Material</Translate>
+          </dt>
+          <dd>{itemEntity.material ? <Translate contentKey={`unilakmetApp.Unit.${itemEntity.material.unit}`} /> : ''}</dd>
+          <dt>
             <span id="quantity">
               <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate>
             </span>
@@ -43,15 +51,13 @@ export const ItemDetail = () => {
               <Translate contentKey="unilakmetApp.item.status">Status</Translate>
             </span>
           </dt>
-          <dd>{itemEntity.status}</dd>
+          <dd>
+            <Translate contentKey={`unilakmetApp.ItemStatus.${itemEntity.status}`}>{itemEntity.status}</Translate>
+          </dd>
           <dt>
             <Translate contentKey="unilakmetApp.item.order">Order</Translate>
           </dt>
-          <dd>{itemEntity.order ? itemEntity.order.id : ''}</dd>
-          <dt>
-            <Translate contentKey="unilakmetApp.item.material">Material</Translate>
-          </dt>
-          <dd>{itemEntity.material ? itemEntity.material.id : ''}</dd>
+          <dd>{itemEntity.order ? itemEntity.order.name : ''}</dd>
         </dl>
         <Button tag={Link} to="/item" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

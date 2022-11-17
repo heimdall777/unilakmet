@@ -43,7 +43,9 @@ export const MaterialDetail = () => {
               <Translate contentKey="unilakmetApp.material.unit">Unit</Translate>
             </span>
           </dt>
-          <dd>{materialEntity.unit}</dd>
+          <dd>
+            <Translate contentKey={`unilakmetApp.Unit.${materialEntity.unit}`} />
+          </dd>
         </dl>
         <Button tag={Link} to="/material" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
