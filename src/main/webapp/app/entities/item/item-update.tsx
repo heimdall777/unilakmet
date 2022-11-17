@@ -10,8 +10,9 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IOrder } from 'app/shared/model/order.model';
 import { getEntities as getOrders } from 'app/entities/order/order.reducer';
+import { IMaterial } from 'app/shared/model/material.model';
+import { getEntities as getMaterials } from 'app/entities/material/material.reducer';
 import { IItem } from 'app/shared/model/item.model';
-import { Unit } from 'app/shared/model/enumerations/unit.model';
 import { ItemStatus } from 'app/shared/model/enumerations/item-status.model';
 import { getEntity, updateEntity, createEntity, reset } from './item.reducer';
 
@@ -24,11 +25,11 @@ export const ItemUpdate = () => {
   const isNew = id === undefined;
 
   const orders = useAppSelector(state => state.order.entities);
+  const materials = useAppSelector(state => state.material.entities);
   const itemEntity = useAppSelector(state => state.item.entity);
   const loading = useAppSelector(state => state.item.loading);
   const updating = useAppSelector(state => state.item.updating);
   const updateSuccess = useAppSelector(state => state.item.updateSuccess);
-  const unitValues = Object.keys(Unit);
   const itemStatusValues = Object.keys(ItemStatus);
 
   const handleClose = () => {
@@ -43,6 +44,7 @@ export const ItemUpdate = () => {
     }
 
     dispatch(getOrders({}));
+    dispatch(getMaterials({}));
   }, []);
 
   useEffect(() => {
@@ -56,6 +58,7 @@ export const ItemUpdate = () => {
       ...itemEntity,
       ...values,
       order: orders.find(it => it.id.toString() === values.order.toString()),
+      material: materials.find(it => it.id.toString() === values.material.toString()),
     };
 
     if (isNew) {
@@ -69,10 +72,10 @@ export const ItemUpdate = () => {
     isNew
       ? {}
       : {
-          unit: 'KG',
           status: 'MISSING',
           ...itemEntity,
           order: itemEntity?.order?.id,
+          material: itemEntity?.material?.id,
         };
 
   return (
@@ -101,16 +104,6 @@ export const ItemUpdate = () => {
                 />
               ) : null}
               <ValidatedField
-                label={translate('unilakmetApp.item.name')}
-                id="item-name"
-                name="name"
-                data-cy="name"
-                type="text"
-                validate={{
-                  required: { value: true, message: translate('entity.validation.required') },
-                }}
-              />
-              <ValidatedField
                 label={translate('unilakmetApp.item.quantity')}
                 id="item-quantity"
                 name="quantity"
@@ -121,13 +114,6 @@ export const ItemUpdate = () => {
                   validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
-              <ValidatedField label={translate('unilakmetApp.item.unit')} id="item-unit" name="unit" data-cy="unit" type="select">
-                {unitValues.map(unit => (
-                  <option value={unit} key={unit}>
-                    {translate('unilakmetApp.Unit.' + unit)}
-                  </option>
-                ))}
-              </ValidatedField>
               <ValidatedField label={translate('unilakmetApp.item.status')} id="item-status" name="status" data-cy="status" type="select">
                 {itemStatusValues.map(itemStatus => (
                   <option value={itemStatus} key={itemStatus}>
@@ -140,7 +126,23 @@ export const ItemUpdate = () => {
                 {orders
                   ? orders.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.name}
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="item-material"
+                name="material"
+                data-cy="material"
+                label={translate('unilakmetApp.item.material')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {materials
+                  ? materials.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}

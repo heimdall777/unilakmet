@@ -2,29 +2,29 @@
   "unilakmetApp": {
     "order": {
       "home": {
-        "title": "Zamówienia",
-        "refreshListLabel": "Odśwież listę",
-        "createLabel": "Dodaj zamówienie",
-        "createOrEditLabel": "Dodaj/Edytuj zamówienie",
-        "notFound": "Nie znaleziono zamówień"
+        "title": "Order",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Order",
+        "createOrEditLabel": "Dodaj lub edytuj: Order",
+        "notFound": "No Orders found"
       },
-      "created": "Utworzono nowy obiekt typu zamówienie z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu zamówienie z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu zamówienie z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Order z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Order z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Order z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć zamówienie '{{ name }}'?"
+        "question": "Czy na pewno chcesz usunąć Order {{ id }}?"
       },
       "detail": {
-        "title": "Zamówienie"
+        "title": "Order"
       },
       "id": "ID",
-      "name": "Nazwa",
-      "description": "Opis",
-      "startDate": "Data rozpoczęcia",
-      "estimatedEndDate": "Przewidywana dana zakończenia",
+      "name": "Name",
+      "description": "Description",
+      "startDate": "Start Date",
+      "estimatedEndDate": "Estimated End Date",
       "status": "Status",
-      "done": "Zakończono",
-      "item": "Komponent"
+      "url": "Url",
+      "item": "Item"
     }
   }
 }

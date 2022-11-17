@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.validation.constraints.*;
 import pl.unilakmet.orders.domain.enumeration.ItemStatus;
-import pl.unilakmet.orders.domain.enumeration.Unit;
 
 /**
  * A DTO for the {@link pl.unilakmet.orders.domain.Item} entity.
@@ -15,18 +14,14 @@ public class ItemDTO implements Serializable {
     private Long id;
 
     @NotNull
-    private String name;
-
-    @NotNull
     private Double quantity;
-
-    @NotNull
-    private Unit unit;
 
     @NotNull
     private ItemStatus status;
 
     private OrderDTO order;
+
+    private MaterialDTO material;
 
     public Long getId() {
         return id;
@@ -36,28 +31,12 @@ public class ItemDTO implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getQuantity() {
         return quantity;
     }
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
-    }
-
-    public Unit getUnit() {
-        return unit;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
     }
 
     public ItemStatus getStatus() {
@@ -74,6 +53,14 @@ public class ItemDTO implements Serializable {
 
     public void setOrder(OrderDTO order) {
         this.order = order;
+    }
+
+    public MaterialDTO getMaterial() {
+        return material;
+    }
+
+    public void setMaterial(MaterialDTO material) {
+        this.material = material;
     }
 
     @Override
@@ -102,11 +89,10 @@ public class ItemDTO implements Serializable {
     public String toString() {
         return "ItemDTO{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
             ", quantity=" + getQuantity() +
-            ", unit='" + getUnit() + "'" +
             ", status='" + getStatus() + "'" +
             ", order=" + getOrder() +
+            ", material=" + getMaterial() +
             "}";
     }
 }

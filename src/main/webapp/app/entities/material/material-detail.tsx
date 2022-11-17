@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntity } from './item.reducer';
+import { getEntity } from './material.reducer';
 
-export const ItemDetail = () => {
+export const MaterialDetail = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<'id'>();
@@ -18,12 +18,12 @@ export const ItemDetail = () => {
     dispatch(getEntity(id));
   }, []);
 
-  const itemEntity = useAppSelector(state => state.item.entity);
+  const materialEntity = useAppSelector(state => state.material.entity);
   return (
     <Row>
       <Col md="8">
-        <h2 data-cy="itemDetailsHeading">
-          <Translate contentKey="unilakmetApp.item.detail.title">Item</Translate>
+        <h2 data-cy="materialDetailsHeading">
+          <Translate contentKey="unilakmetApp.material.detail.title">Material</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -31,36 +31,28 @@ export const ItemDetail = () => {
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{itemEntity.id}</dd>
+          <dd>{materialEntity.id}</dd>
           <dt>
-            <span id="quantity">
-              <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate>
+            <span id="name">
+              <Translate contentKey="unilakmetApp.material.name">Name</Translate>
             </span>
           </dt>
-          <dd>{itemEntity.quantity}</dd>
+          <dd>{materialEntity.name}</dd>
           <dt>
-            <span id="status">
-              <Translate contentKey="unilakmetApp.item.status">Status</Translate>
+            <span id="unit">
+              <Translate contentKey="unilakmetApp.material.unit">Unit</Translate>
             </span>
           </dt>
-          <dd>{itemEntity.status}</dd>
-          <dt>
-            <Translate contentKey="unilakmetApp.item.order">Order</Translate>
-          </dt>
-          <dd>{itemEntity.order ? itemEntity.order.id : ''}</dd>
-          <dt>
-            <Translate contentKey="unilakmetApp.item.material">Material</Translate>
-          </dt>
-          <dd>{itemEntity.material ? itemEntity.material.id : ''}</dd>
+          <dd>{materialEntity.unit}</dd>
         </dl>
-        <Button tag={Link} to="/item" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/material" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/item/${itemEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/material/${materialEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -71,4 +63,4 @@ export const ItemDetail = () => {
   );
 };
 
-export default ItemDetail;
+export default MaterialDetail;

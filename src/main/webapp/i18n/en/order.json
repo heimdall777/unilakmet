@@ -23,6 +23,7 @@
       "startDate": "Start Date",
       "estimatedEndDate": "Estimated End Date",
       "status": "Status",
+      "url": "Url",
       "item": "Item"
     }
   }

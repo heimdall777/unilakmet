@@ -1,14 +1,13 @@
 import { IOrder } from 'app/shared/model/order.model';
-import { Unit } from 'app/shared/model/enumerations/unit.model';
+import { IMaterial } from 'app/shared/model/material.model';
 import { ItemStatus } from 'app/shared/model/enumerations/item-status.model';
 
 export interface IItem {
   id?: number;
-  name?: string;
   quantity?: number;
-  unit?: Unit;
   status?: ItemStatus;
   order?: IOrder | null;
+  material?: IMaterial | null;
 }
 
 export const defaultValue: Readonly<IItem> = {};

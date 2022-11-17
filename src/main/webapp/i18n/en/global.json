@@ -9,6 +9,7 @@
         "main": "Production",
         "item": "Item",
         "order": "Order",
+        "material": "Material",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

@@ -1,0 +1,34 @@
+{
+  "applications": "*",
+  "changelogDate": "20221117192154",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "material",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "unit",
+      "fieldType": "Unit",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "KG (kg),M (m),CM (cm),PIECE (szt)"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Material",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "item",
+      "otherEntityRelationshipName": "material",
+      "relationshipName": "item",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

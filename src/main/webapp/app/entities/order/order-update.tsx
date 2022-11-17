@@ -144,6 +144,7 @@ export const OrderUpdate = () => {
                   </option>
                 ))}
               </ValidatedField>
+              <ValidatedField label={translate('unilakmetApp.order.url')} id="order-url" name="url" data-cy="url" type="text" />
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/order" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
