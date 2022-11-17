@@ -120,6 +120,9 @@ export const Order = () => {
                 <th className="hand" onClick={sort('status')}>
                   <Translate contentKey="unilakmetApp.order.status">Status</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
+                <th className="hand" onClick={sort('url')}>
+                  <Translate contentKey="unilakmetApp.order.url">Url</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
                 <th />
               </tr>
             </thead>
@@ -139,6 +142,11 @@ export const Order = () => {
                   </td>
                   <td>
                     <Translate contentKey={`unilakmetApp.OrderStatus.${order.status}`} />
+                  </td>
+                  <td>
+                    <a href={order.url} target="_blank" rel="noreferrer noopener">
+                      {order.url}
+                    </a>
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

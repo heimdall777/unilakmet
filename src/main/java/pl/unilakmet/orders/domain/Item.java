@@ -5,7 +5,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import pl.unilakmet.orders.domain.enumeration.ItemStatus;
-import pl.unilakmet.orders.domain.enumeration.Unit;
 
 /**
  * A Item.
@@ -24,17 +23,8 @@ public class Item implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @NotNull
     @Column(name = "quantity", nullable = false)
     private Double quantity;
-
-    @NotNull
-    @Enumerated(EnumType.STRING)
-    @Column(name = "unit", nullable = false)
-    private Unit unit;
 
     @NotNull
     @Enumerated(EnumType.STRING)
@@ -44,6 +34,10 @@ public class Item implements Serializable {
     @ManyToOne
     @JsonIgnoreProperties(value = { "items" }, allowSetters = true)
     private Order order;
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "items" }, allowSetters = true)
+    private Material material;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -60,19 +54,6 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
-    }
-
-    public Item name(String name) {
-        this.setName(name);
-        return this;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public Double getQuantity() {
         return this.quantity;
     }
@@ -84,19 +65,6 @@ public class Item implements Serializable {
 
     public void setQuantity(Double quantity) {
         this.quantity = quantity;
-    }
-
-    public Unit getUnit() {
-        return this.unit;
-    }
-
-    public Item unit(Unit unit) {
-        this.setUnit(unit);
-        return this;
-    }
-
-    public void setUnit(Unit unit) {
-        this.unit = unit;
     }
 
     public ItemStatus getStatus() {
@@ -125,6 +93,19 @@ public class Item implements Serializable {
         return this;
     }
 
+    public Material getMaterial() {
+        return this.material;
+    }
+
+    public void setMaterial(Material material) {
+        this.material = material;
+    }
+
+    public Item material(Material material) {
+        this.setMaterial(material);
+        return this;
+    }
+
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
@@ -149,9 +130,7 @@ public class Item implements Serializable {
     public String toString() {
         return "Item{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
             ", quantity=" + getQuantity() +
-            ", unit='" + getUnit() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

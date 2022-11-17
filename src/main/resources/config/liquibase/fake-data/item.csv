@@ -1,11 +1,11 @@
-id;name;quantity;unit;status
-1;Supervisor Berkshire;24124;KG;IN_STOCK
-2;Up-sized cyan;55212;M;IN_STOCK
-3;Bedfordshire Tuna;63865;KG;MISSING
-4;killer drive haptic;77408;M;MISSING
-5;systemic portal;17687;PIECE;MISSING
-6;UAE Lubelskie;10279;KG;MISSING
-7;innovate purple;75860;KG;ORDERED
-8;Pizza District intermediate;27787;KG;ORDERED
-9;virtual Agent;45483;PIECE;IN_STOCK
-10;Directives array;65443;KG;IN_STOCK
+id;quantity;status
+1;50449;IN_STOCK
+2;266;ORDERED
+3;50902;ORDERED
+4;29936;MISSING
+5;20839;IN_STOCK
+6;46770;MISSING
+7;92381;ORDERED
+8;19723;IN_STOCK
+9;30728;ORDERED
+10;37993;IN_STOCK

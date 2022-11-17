@@ -24,7 +24,8 @@
       "estimatedEndDate": "Przewidywana dana zakończenia",
       "status": "Status",
       "done": "Zakończono",
-      "item": "Komponent"
+      "item": "Komponent",
+      "url": "Adres url projektów"
     }
   }
 }

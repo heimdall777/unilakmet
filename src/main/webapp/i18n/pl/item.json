@@ -12,17 +12,17 @@
       "updated": "Uaktualniono obiekt typu komponent z identyfikatorem {{ param }}",
       "deleted": "Usunięto obiekt typu komponent z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć komponent '{{ name }}'?"
+        "question": "Czy na pewno chcesz usunąć komponent '{{ id }}'?"
       },
       "detail": {
-        "title": "Item"
+        "title": "Komponent"
       },
       "id": "ID",
-      "name": "Nazwa",
       "quantity": "Ilość",
       "unit": "Jednostka",
       "status": "Status",
-      "order": "Zamówienie"
+      "order": "Zamówienie",
+      "material": "Materiał"
     }
   }
 }

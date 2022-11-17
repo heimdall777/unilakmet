@@ -1,7 +1,10 @@
+entity Material {
+ 	name String  required,
+    unit Unit required
+}
+
 entity Item {
-	name String  required,
 	quantity Double required,
-    unit Unit required,
     status ItemStatus required
 }
 
@@ -10,7 +13,8 @@ entity Order {
     description String,
 	startDate Instant required,
     estimatedEndDate Instant required,
-	status OrderStatus required
+	status OrderStatus required,
+    url String
 }
 
 enum OrderStatus {
@@ -28,6 +32,7 @@ enum ItemStatus {
 // defining multiple OneToMany relationships with comments
 relationship OneToMany {
 	Order to Item{order}
+    Material to Item{material}
 }
 
 //relationship ManyToOne {

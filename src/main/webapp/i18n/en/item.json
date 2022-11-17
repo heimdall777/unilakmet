@@ -18,11 +18,11 @@
         "title": "Item"
       },
       "id": "ID",
-      "name": "Name",
       "quantity": "Quantity",
-      "unit": "Unit",
       "status": "Status",
-      "order": "Order"
+      "order": "Order",
+      "material": "Material",
+      "unit": "Unit"
     }
   }
 }

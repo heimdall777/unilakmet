@@ -105,14 +105,14 @@ export const Item = () => {
                 <th className="hand" onClick={sort('id')}>
                   <Translate contentKey="unilakmetApp.item.id">ID</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
-                <th className="hand" onClick={sort('name')}>
-                  <Translate contentKey="unilakmetApp.item.name">Name</Translate> <FontAwesomeIcon icon="sort" />
+                <th>
+                  <Translate contentKey="unilakmetApp.item.material">Material</Translate> <FontAwesomeIcon icon="sort" />
+                </th>
+                <th>
+                  <Translate contentKey="unilakmetApp.item.unit">Unit</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('quantity')}>
                   <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate> <FontAwesomeIcon icon="sort" />
-                </th>
-                <th className="hand" onClick={sort('unit')}>
-                  <Translate contentKey="unilakmetApp.item.unit">Unit</Translate> <FontAwesomeIcon icon="sort" />
                 </th>
                 <th className="hand" onClick={sort('status')}>
                   <Translate contentKey="unilakmetApp.item.status">Status</Translate> <FontAwesomeIcon icon="sort" />
@@ -131,11 +131,9 @@ export const Item = () => {
                       {item.id}
                     </Button>
                   </td>
-                  <td>{item.name}</td>
+                  <td>{item.material ? <Link to={`/material/${item.material.name}`}>{item.material.name}</Link> : ''}</td>
+                  <td>{item.material ? <Translate contentKey={`unilakmetApp.Unit.${item.material.unit}`} /> : ''}</td>
                   <td>{item.quantity}</td>
-                  <td>
-                    <Translate contentKey={`unilakmetApp.Unit.${item.unit}`} />
-                  </td>
                   <td>
                     <Translate contentKey={`unilakmetApp.ItemStatus.${item.status}`} />
                   </td>

@@ -49,6 +49,9 @@ class OrderResourceIT {
     private static final OrderStatus DEFAULT_STATUS = OrderStatus.NEW;
     private static final OrderStatus UPDATED_STATUS = OrderStatus.IN_PROGRESS;
 
+    private static final String DEFAULT_URL = "AAAAAAAAAA";
+    private static final String UPDATED_URL = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/orders";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -81,7 +84,8 @@ class OrderResourceIT {
             .description(DEFAULT_DESCRIPTION)
             .startDate(DEFAULT_START_DATE)
             .estimatedEndDate(DEFAULT_ESTIMATED_END_DATE)
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .url(DEFAULT_URL);
         return order;
     }
 
@@ -97,7 +101,8 @@ class OrderResourceIT {
             .description(UPDATED_DESCRIPTION)
             .startDate(UPDATED_START_DATE)
             .estimatedEndDate(UPDATED_ESTIMATED_END_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .url(UPDATED_URL);
         return order;
     }
 
@@ -125,6 +130,7 @@ class OrderResourceIT {
         assertThat(testOrder.getStartDate()).isEqualTo(DEFAULT_START_DATE);
         assertThat(testOrder.getEstimatedEndDate()).isEqualTo(DEFAULT_ESTIMATED_END_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testOrder.getUrl()).isEqualTo(DEFAULT_URL);
     }
 
     @Test
@@ -234,7 +240,8 @@ class OrderResourceIT {
             .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
             .andExpect(jsonPath("$.[*].startDate").value(hasItem(DEFAULT_START_DATE.toString())))
             .andExpect(jsonPath("$.[*].estimatedEndDate").value(hasItem(DEFAULT_ESTIMATED_END_DATE.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].url").value(hasItem(DEFAULT_URL)));
     }
 
     @Test
@@ -253,7 +260,8 @@ class OrderResourceIT {
             .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
             .andExpect(jsonPath("$.startDate").value(DEFAULT_START_DATE.toString()))
             .andExpect(jsonPath("$.estimatedEndDate").value(DEFAULT_ESTIMATED_END_DATE.toString()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.url").value(DEFAULT_URL));
     }
 
     @Test
@@ -280,7 +288,8 @@ class OrderResourceIT {
             .description(UPDATED_DESCRIPTION)
             .startDate(UPDATED_START_DATE)
             .estimatedEndDate(UPDATED_ESTIMATED_END_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .url(UPDATED_URL);
         OrderDTO orderDTO = orderMapper.toDto(updatedOrder);
 
         restOrderMockMvc
@@ -300,6 +309,7 @@ class OrderResourceIT {
         assertThat(testOrder.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testOrder.getEstimatedEndDate()).isEqualTo(UPDATED_ESTIMATED_END_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testOrder.getUrl()).isEqualTo(UPDATED_URL);
     }
 
     @Test
@@ -383,7 +393,8 @@ class OrderResourceIT {
             .name(UPDATED_NAME)
             .startDate(UPDATED_START_DATE)
             .estimatedEndDate(UPDATED_ESTIMATED_END_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .url(UPDATED_URL);
 
         restOrderMockMvc
             .perform(
@@ -402,6 +413,7 @@ class OrderResourceIT {
         assertThat(testOrder.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testOrder.getEstimatedEndDate()).isEqualTo(UPDATED_ESTIMATED_END_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testOrder.getUrl()).isEqualTo(UPDATED_URL);
     }
 
     @Test
@@ -421,7 +433,8 @@ class OrderResourceIT {
             .description(UPDATED_DESCRIPTION)
             .startDate(UPDATED_START_DATE)
             .estimatedEndDate(UPDATED_ESTIMATED_END_DATE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .url(UPDATED_URL);
 
         restOrderMockMvc
             .perform(
@@ -440,6 +453,7 @@ class OrderResourceIT {
         assertThat(testOrder.getStartDate()).isEqualTo(UPDATED_START_DATE);
         assertThat(testOrder.getEstimatedEndDate()).isEqualTo(UPDATED_ESTIMATED_END_DATE);
         assertThat(testOrder.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testOrder.getUrl()).isEqualTo(UPDATED_URL);
     }
 
     @Test

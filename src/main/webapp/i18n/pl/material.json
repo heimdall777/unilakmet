@@ -1,0 +1,26 @@
+{
+  "unilakmetApp": {
+    "material": {
+      "home": {
+        "title": "Materiały",
+        "refreshListLabel": "Odśwież listę",
+        "createLabel": "Dodaj materiał",
+        "createOrEditLabel": "Dodaj/Edytuj materiał",
+        "notFound": "No Materials found"
+      },
+      "created": "Utworzono nowy obiekt typu materiał z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu materiał z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu materiał z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Material '{{ name }}'?"
+      },
+      "detail": {
+        "title": "Materiał"
+      },
+      "id": "ID",
+      "name": "Nazwa",
+      "unit": "Jednostka",
+      "item": "Komponent"
+    }
+  }
+}

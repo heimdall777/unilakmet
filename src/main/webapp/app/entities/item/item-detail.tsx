@@ -33,11 +33,13 @@ export const ItemDetail = () => {
           </dt>
           <dd>{itemEntity.id}</dd>
           <dt>
-            <span id="name">
-              <Translate contentKey="unilakmetApp.item.name">Name</Translate>
-            </span>
+            <Translate contentKey="unilakmetApp.item.material">Material</Translate>
           </dt>
-          <dd>{itemEntity.name}</dd>
+          <dd>{itemEntity.material ? itemEntity.material.name : ''}</dd>
+          <dt>
+            <Translate contentKey="unilakmetApp.item.unit">Material</Translate>
+          </dt>
+          <dd>{itemEntity.material ? <Translate contentKey={`unilakmetApp.Unit.${itemEntity.material.unit}`} /> : ''}</dd>
           <dt>
             <span id="quantity">
               <Translate contentKey="unilakmetApp.item.quantity">Quantity</Translate>
@@ -45,17 +47,13 @@ export const ItemDetail = () => {
           </dt>
           <dd>{itemEntity.quantity}</dd>
           <dt>
-            <span id="unit">
-              <Translate contentKey="unilakmetApp.item.unit">Unit</Translate>
-            </span>
-          </dt>
-          <dd>{itemEntity.unit}</dd>
-          <dt>
             <span id="status">
               <Translate contentKey="unilakmetApp.item.status">Status</Translate>
             </span>
           </dt>
-          <dd>{itemEntity.status}</dd>
+          <dd>
+            <Translate contentKey={`unilakmetApp.ItemStatus.${itemEntity.status}`}>{itemEntity.status}</Translate>
+          </dd>
           <dt>
             <Translate contentKey="unilakmetApp.item.order">Order</Translate>
           </dt>

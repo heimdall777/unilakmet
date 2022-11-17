@@ -13,5 +13,11 @@
                                  constraintName="fk_item__order_id"
                                  referencedColumnNames="id"
                                  referencedTableName="jhi_order"/>
+
+        <addForeignKeyConstraint baseColumnNames="material_id"
+                                 baseTableName="item"
+                                 constraintName="fk_item__material_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="material"/>
     </changeSet>
 </databaseChangeLog>

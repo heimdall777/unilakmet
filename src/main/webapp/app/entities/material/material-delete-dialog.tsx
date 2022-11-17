@@ -5,9 +5,9 @@ import { Translate } from 'react-jhipster';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { useAppDispatch, useAppSelector } from 'app/config/store';
-import { getEntity, deleteEntity } from './item.reducer';
+import { getEntity, deleteEntity } from './material.reducer';
 
-export const ItemDeleteDialog = () => {
+export const MaterialDeleteDialog = () => {
   const dispatch = useAppDispatch();
 
   const location = useLocation();
@@ -21,11 +21,11 @@ export const ItemDeleteDialog = () => {
     setLoadModal(true);
   }, []);
 
-  const itemEntity = useAppSelector(state => state.item.entity);
-  const updateSuccess = useAppSelector(state => state.item.updateSuccess);
+  const materialEntity = useAppSelector(state => state.material.entity);
+  const updateSuccess = useAppSelector(state => state.material.updateSuccess);
 
   const handleClose = () => {
-    navigate('/item' + location.search);
+    navigate('/material');
   };
 
   useEffect(() => {
@@ -36,17 +36,17 @@ export const ItemDeleteDialog = () => {
   }, [updateSuccess]);
 
   const confirmDelete = () => {
-    dispatch(deleteEntity(itemEntity.id));
+    dispatch(deleteEntity(materialEntity.id));
   };
 
   return (
     <Modal isOpen toggle={handleClose}>
-      <ModalHeader toggle={handleClose} data-cy="itemDeleteDialogHeading">
+      <ModalHeader toggle={handleClose} data-cy="materialDeleteDialogHeading">
         <Translate contentKey="entity.delete.title">Confirm delete operation</Translate>
       </ModalHeader>
-      <ModalBody id="unilakmetApp.item.delete.question">
-        <Translate contentKey="unilakmetApp.item.delete.question" interpolate={{ id: itemEntity.id }}>
-          Are you sure you want to delete this Item?
+      <ModalBody id="unilakmetApp.material.delete.question">
+        <Translate contentKey="unilakmetApp.material.delete.question" interpolate={{ name: materialEntity.name }}>
+          Are you sure you want to delete this Material?
         </Translate>
       </ModalBody>
       <ModalFooter>
@@ -55,7 +55,7 @@ export const ItemDeleteDialog = () => {
           &nbsp;
           <Translate contentKey="entity.action.cancel">Cancel</Translate>
         </Button>
-        <Button id="jhi-confirm-delete-item" data-cy="entityConfirmDeleteButton" color="danger" onClick={confirmDelete}>
+        <Button id="jhi-confirm-delete-material" data-cy="entityConfirmDeleteButton" color="danger" onClick={confirmDelete}>
           <FontAwesomeIcon icon="trash" />
           &nbsp;
           <Translate contentKey="entity.action.delete">Delete</Translate>
@@ -65,4 +65,4 @@ export const ItemDeleteDialog = () => {
   );
 };
 
-export default ItemDeleteDialog;
+export default MaterialDeleteDialog;
